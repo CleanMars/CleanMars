@@ -40,6 +40,9 @@ def mainMovementLoop():
                 print(f'Distance from Sensor 1: {distance1} cm')
                 print(f'Distance from Sensor 2: {distance2} cm')
 
+                # ser.write(bytearray(distance1))
+                # ser.write(bytearray(distance2))
+
                 #FOR AKIKO{
                 #if({distance1} < 20):
                     #rotateRight()
