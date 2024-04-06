@@ -128,6 +128,7 @@ public:
     }
 
     lastDirection = direction;
+    
 
     analogWrite(PWMA, power);
     analogWrite(PWMB, power);
@@ -280,7 +281,7 @@ void setup() {
 
   // digitalWrite(STBY, 0);
   while (digitalRead(2) != LOW);
-
+  
   digitalWrite(STBY, 1);
   // delay(2000);
   Serial.println("start move");
@@ -291,7 +292,17 @@ void setup() {
 
 void loop() {
   // cleanMars.senseDistance();
-  cleanMars.run();
+  if (Serial.available() > 0) { // Check if data is available to read
+    // char command = Serial.read(); // Read the incoming command
+    // Process the command
+    Serial.print("received");
+    // if (command == 'd') {
+    //   // Execute actions when 'd' command is received
+    //   // For example, move the Arduino in front of the object
+    // }
+  }
+  // cleanMars.run();
+  
   // cleanMars.print();
   // String dir = "G";
   // cleanMars.move(255, 'F');
