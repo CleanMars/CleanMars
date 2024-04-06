@@ -3,8 +3,9 @@ import time
 
 # Establish serial connection (adjust port and baud rate as needed)
 ser = serial.Serial('/dev/ttyUSB0', 9600, timeout=1)
+# motorSerial = serial.Serial('/dev/ttyUSB1', 9600, timeout=1) #FOR AKIKO
 
-def read_distance_from_arduino():
+def read_distance():
     # Read response from Arduino
     response1 = ser.readline().decode().strip()
     response2 = ser.readline().decode().strip()
@@ -17,15 +18,35 @@ def read_distance_from_arduino():
     else:
         return None, None
 
+# FOR AKIKO{
+#def rotateRight():
+
+#def rotateLeft():
+
+#def moveForward():
+
+#def moveBackward():
+# }
+
 if __name__ == '__main__':
     try:
         while True:
             # Read distances from Arduino
-            distance1, distance2 = read_distance_from_arduino()
+            distance1, distance2 = read_distance()
 
             if distance1 is not None and distance2 is not None:
                 print(f'Distance from Sensor 1: {distance1} cm')
                 print(f'Distance from Sensor 2: {distance2} cm')
+
+                #FOR AKIKO{
+                #if({distance1} < 10):
+                    #rotateRight()
+                #if({distance2} < 10):
+                    #rotateLeft()
+                #if({distance1} < 10 and {distance2} < 10):
+                    #moveBackward()
+                    #moveRight()
+                # }
             else:
                 print('Failed to read distances from Arduino')
                 # Delay for 1 second
