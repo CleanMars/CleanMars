@@ -2,7 +2,7 @@ from elevenlabs import play
 from elevenlabs.client import ElevenLabs
 from openai import OpenAI
 
-GPTapi_key = "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"
+GPTapi_key = "" #change 
 GPTclient = OpenAI(api_key=GPTapi_key)
 
 ELclient = ElevenLabs(
