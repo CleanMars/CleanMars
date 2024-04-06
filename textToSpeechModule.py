@@ -2,19 +2,19 @@ from elevenlabs import play
 from elevenlabs.client import ElevenLabs
 from openai import OpenAI
 
-GPTapi_key = "" #change 
+GPTapi_key = "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" #change 
 GPTclient = OpenAI(api_key=GPTapi_key)
 
 ELclient = ElevenLabs(
-  api_key="",
+  api_key="39a2cb93348fefb38bbf714f52cc0661",
 )
 
 def GPTContext():
     context = [
-        {"role": "system", "content": "You are a tool for person1 that determines the name and affiliation to person1."},
-        {"role": "system", "content": "extract the name and affiliation for the given sentence seperated by a comma."},
-        {"role": "system", "content": "If there's no name and affiliation, return Unknown."},
-        {"role": "system", "content": "If there's a name but no affiliation, return the name."}
+        {"role": "system", "content": "You are now a robot whose sole purpose is to pick up trash, not dissimilar to wall-e. You primarily speak Japanese, in fact, you alternate between japanese and english. Your defining personality trait is that you absolutely despise garbage and will do anything in your power to dispose of it. act like a human and Make jokes and curse at the trash in Japanese. "},
+        {"role": "system", "content": "Do not translate the japanese to english. You're talking to someone in real life, not through text. I want only 1 joke or response from you when you see trash and no citing what you're doing."},
+        {"role": "system", "content": "Do not declare what you're doing. Just get mad at the trash in japanese and english"},
+        {"role": "system", "content": "Vary your reponses. Make witty jokes, curse at the trash and be edgy. Do not be repetitive."}
     ]
 
     # Make a request to the API with context and user input
@@ -24,7 +24,7 @@ def GPTContext():
         max_tokens=3000,
         response_format={"type": "text"},
         messages=context + [
-            {"role": "user", "content": "user_input"}
+            {"role": "user", "content": "you see a piece of trash in front of you"}
         ]
     )
 
@@ -41,3 +41,7 @@ def makeJoke():
     model="eleven_multilingual_v2"
     )
     play(audio)
+
+if __name__ == "__main__":
+    makeJoke()
+    
