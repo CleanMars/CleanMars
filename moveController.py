@@ -1,6 +1,8 @@
 import serial
 import time
 
+print("Starting moveController.py...")
+
 # Establish serial connection (adjust port and baud rate as needed)
 ser = serial.Serial('/dev/ttyUSB0', 9600, timeout=1)
 # motorSerial = serial.Serial('/dev/ttyUSB1', 9600, timeout=1) #FOR AKIKO
@@ -28,7 +30,7 @@ def read_distance():
 #def moveBackward():
 # }
 
-if __name__ == '__main__':
+def mainMovementLoop():
     try:
         while True:
             # Read distances from Arduino
@@ -39,11 +41,11 @@ if __name__ == '__main__':
                 print(f'Distance from Sensor 2: {distance2} cm')
 
                 #FOR AKIKO{
-                #if({distance1} < 10):
+                #if({distance1} < 20):
                     #rotateRight()
-                #if({distance2} < 10):
+                #if({distance2} < 20):
                     #rotateLeft()
-                #if({distance1} < 10 and {distance2} < 10):
+                #if({distance1} < 20 and {distance2} < 20):
                     #moveBackward()
                     #moveRight()
                 # }
