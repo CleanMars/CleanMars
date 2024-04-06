@@ -6,7 +6,7 @@ GPTapi_key = "" #change
 GPTclient = OpenAI(api_key=GPTapi_key)
 
 ELclient = ElevenLabs(
-  api_key="39a2cb93348fefb38bbf714f52cc0661",
+  api_key="",
 )
 
 def GPTContext():
