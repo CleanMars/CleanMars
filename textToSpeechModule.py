@@ -2,13 +2,14 @@ from elevenlabs import play
 from elevenlabs.client import ElevenLabs
 from openai import OpenAI
 
-GPTapi_key = "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"  # change
+GPTapi_key = "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"  # change
 GPTclient = OpenAI(api_key=GPTapi_key)
 
 ELclient = ElevenLabs(api_key="39a2cb93348fefb38bbf714f52cc0661")
 
 # Initialize an empty list to store the responses
 response_history = []
+trash_seen = False
 
 def GPTContext():
     global response_history
@@ -42,14 +43,19 @@ def GPTContext():
     return output
 
 def makeJoke():
-    joke = GPTContext()
+    global trash_seen
 
-    audio = ELclient.generate(
-        text=joke,
-        voice="Dave",
-        model="eleven_multilingual_v2"
-    )
-    play(audio)
+    if not trash_seen:
+        joke = GPTContext()
+
+        audio = ELclient.generate(
+            text=joke,
+            voice="Dave",
+            model="eleven_multilingual_v2"
+        )
+        play(audio)
+
+        trash_seen = True
 
 if __name__ == "__main__":
     makeJoke()

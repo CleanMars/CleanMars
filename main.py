@@ -1,6 +1,4 @@
-import moveController
-import robotArmController
+import app
 
 if __name__ == "__main__":
-    moveController.mainMovementLoop()
-    # robotArmController.handleArmMovement()
+    app.runModel()
