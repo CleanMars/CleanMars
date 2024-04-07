@@ -55,12 +55,12 @@ public:
   }
 
   void move(bool direction) {
-    Serial.print("input1: ");
-    Serial.println(in1);
-    Serial.print("input2: ");
-    Serial.println(in2);
-    Serial.print("direction: ");
-    Serial.println(direction);
+    // Serial.print("input1: ");
+    // Serial.println(in1);
+    // Serial.print("input2: ");
+    // Serial.println(in2);
+    // Serial.print("direction: ");
+    // Serial.println(direction);
     // direction 1 -> forward
     // direction 0 -> backward
     digitalWrite(in1, direction);
@@ -78,7 +78,6 @@ private:
   int leftWheelNumber, rightWheelNumber;
   Wheel* leftWheels;
   Wheel* rightWheels;
-  char lastDirection;
   // map
 
 public:
@@ -106,7 +105,7 @@ public:
       Serial.println(rightW[i].second);
       rightWheels[i] = Wheel(rightW[i].first, rightW[i].second);
     }
-    lastDirection = '*';
+
     Serial.println("done setting up");
   }
 
@@ -120,15 +119,10 @@ public:
   }
 
   void move(uint8_t power, char direction) {
-    if(lastDirection != direction) {
-      // stop();
-      digitalWrite(STBY, 0);
-      delay(1500);
-      digitalWrite(STBY, 1);
-    }
-
-    lastDirection = direction;
-
+    // if(digitalRead(2) == LOW) {
+    //   Serial.println("clicked");
+    //   digitalWrite(STBY, 1);
+    // }
     analogWrite(PWMA, power);
     analogWrite(PWMB, power);
     if (direction == 'F') {
@@ -233,18 +227,19 @@ public:
 
   void run() {
     Pair<int, int> distances = senseDistance();
-    if(distances.second < 5) {
+    const int speed = 250, L = 15;
+    if(distances.second < L) {
       Serial.println("rotating right...");
-      move(255, 'D');
+      move(speed, 'D');
       return;
     }
-    if(distances.first < 5) {
+    if(distances.first < L) {
       Serial.println("rotating left...");
-      move(255, 'A');
+      move(speed, 'A');
       return;
     }
     Serial.println("going forward...");
-    move(255, 'F');
+    move(speed, 'F');
   }
 };
 
