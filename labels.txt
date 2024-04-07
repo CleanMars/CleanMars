@@ -1,2 +1,3 @@
-0 can
-1 plastic bottle
+0 base
+1 bottle
+2 can

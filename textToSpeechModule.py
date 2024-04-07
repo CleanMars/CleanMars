@@ -45,6 +45,8 @@ def GPTContext():
 def makeJoke():
     global trash_seen
 
+    print("joke made")
+
     if not trash_seen:
         joke = GPTContext()
 
@@ -56,6 +58,3 @@ def makeJoke():
         play(audio)
 
         trash_seen = True
-
-if __name__ == "__main__":
-    makeJoke()
